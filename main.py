@@ -10,6 +10,9 @@ WIDTH = 1200
 HEIGHT = 600
 FPS = 60
 
+pygame.mixer.music.load('bgm.mp3')
+pygame.mixer.music.set_volume(0.4)
+
 size = WIDTH / 60
 firstLeft = WIDTH / 3
 firstTop = 2 * HEIGHT / 3
@@ -69,6 +72,8 @@ def draw_text(surf, text, size, x, y, color):
 def time_format(milliseconds):
     seconds = milliseconds // 1000
     return f"{30 - seconds:02d}"
+
+pygame.mixer.music.play(loops=-1)
 
 # Main game loop
 running = True
