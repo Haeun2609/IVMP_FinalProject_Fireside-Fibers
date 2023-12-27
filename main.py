@@ -1,6 +1,6 @@
 import pygame
 import sys
-from settings import *
+
 # Define colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -9,9 +9,6 @@ RED = (255, 0, 0)
 WIDTH = 1200
 HEIGHT = 600
 FPS = 60
-
-pygame.mixer.music.load('bgm.mp3')
-pygame.mixer.music.set_volume(0.4)
 
 size = WIDTH / 60
 firstLeft = WIDTH / 3
@@ -56,15 +53,16 @@ TIME_ATTACK_MODE = 3
 GAME_OVER = 4
 
 current_mode = START_SCREEN
-font_name = pygame.font.match_font('arial')
+
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Fireside Fibers by hbn")
 clock = pygame.time.Clock()
 
+
 def draw_text(surf, text, size, x, y, color):
-    font = pygame.font.Font(font_name, size)
+    font = pygame.font.Font("HbnWrite.ttf",size)
     text_surface = font.render(text, True, color)
     text_rect = text_surface.get_rect(center=(x, y))
     surf.blit(text_surface, text_rect)
@@ -72,8 +70,6 @@ def draw_text(surf, text, size, x, y, color):
 def time_format(milliseconds):
     seconds = milliseconds // 1000
     return f"{30 - seconds:02d}"
-
-pygame.mixer.music.play(loops=-1)
 
 # Main game loop
 running = True
@@ -226,7 +222,7 @@ while running:
             elapsedTime = pygame.time.get_ticks() - last_correct
             if elapsedTime > 30000 or wrongCount > 5:
                 next_key_text = chr(keySequence[currentIndex])
-                draw_text(screen, next_key_text, 36, WIDTH // 2, 50, RED)
+                draw_text(screen, next_key_text, 36, WIDTH // 2, 50, WHITE)
         elif current_mode == COLORWORK_MODE:
             screen.blit(pattern_img, pattern_rect)
 
